@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#07080C" />
+<title>Portfolio Co. — Agentic Trading Infrastructure</title>
+<meta name="description" content="Agentic trading infrastructure for prediction markets. Agents discover edge, build shadow bots, gate launches with humans, and run live with continuous learning." />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Portfolio Co." />
+<meta property="og:title" content="Portfolio Co. — Agentic Trading Infrastructure" />
+<meta property="og:description" content="A swarm of agents · one experiment — discover, build, gate, run live, and learn. Agent harness for prediction-market trading infrastructure." />
+<meta property="og:image" content="landing-preview.png" />
+<meta property="og:image:width" content="1840" />
+<meta property="og:image:height" content="973" />
+<meta property="og:image:alt" content="Portfolio Co. landing page — agent workshop with backtest, shadow, approval, and live trader terminals." />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Portfolio Co. — Agentic Trading Infrastructure" />
+<meta name="twitter:description" content="A swarm of agents · one experiment — discover, build, gate, run live, and learn." />
+<meta name="twitter:image" content="landing-preview.png" />
+<meta name="twitter:image:alt" content="Portfolio Co. landing page — agent workshop with backtest, shadow, approval, and live trader terminals." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<style>
+/* ── Hero v2: compact, animated workshop is the hero ── */
+.hero-v2{min-height:auto !important;height:auto !important;padding:84px 24px 8px !important;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center}
+.hero-v2 .hero-top{max-width:880px;margin:0 auto}
+.hero-v2 .hero-title{font-size:clamp(40px,5.5vw,68px);font-weight:900;letter-spacing:-.03em;margin-bottom:6px}
+.hero-v2 .hero-sub{font-size:clamp(13px,1.3vw,15px);color:var(--dim);letter-spacing:.04em;margin-bottom:14px}
+.hero-v2 .hero-tags{justify-content:center;font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:18px;display:flex;gap:10px;align-items:center}
+.hero-v2 .hero-ctas{display:flex;gap:12px;justify-content:center;margin-bottom:0}
+.hero-v2 .hero-bar{height:2px;width:54px;background:linear-gradient(90deg,var(--violet),var(--cyan));margin:0 auto 18px}
+.workshop-hero{padding-top:18px !important;padding-bottom:60px !important}
+.workshop-hero .ws-tagline{text-align:center;color:var(--violet);margin-bottom:20px;letter-spacing:.14em;font-size:11px;opacity:.85}
+.ws{position:relative}
+
+/* Orchestrator card — sits above the worker agents and narrates */
+.ws-orch{
+  border:1px solid var(--border);
+  border-top:3px solid var(--pink);
+  background:linear-gradient(180deg,rgba(46,18,40,.55),rgba(20,12,20,.55));
+  border-radius:10px;overflow:hidden;
+  margin-bottom:10px;
+  box-shadow:0 0 0 1px rgba(236,72,153,.18), 0 12px 40px -16px rgba(236,72,153,.35);
+}
+.ws-orch-head{
+  display:flex;align-items:center;gap:10px;padding:10px 14px;font-size:12px;
+  background:rgba(255,255,255,.03);border-bottom:1px solid var(--border);
+}
+.ws-orch-dot{width:10px;height:10px;border-radius:50%;background:var(--pink);box-shadow:0 0 14px var(--pink);animation:wsPulse 1.4s infinite ease-in-out}
+.ws-orch-name{flex:1;color:var(--text);font-weight:700;letter-spacing:.02em}
+.ws-orch-stage{color:var(--pink);font-size:10px;letter-spacing:.16em;font-weight:700;opacity:.9}
+.ws-orch-body{padding:10px 16px 12px;font-size:12.5px;line-height:1.7;color:var(--dim);min-height:72px;max-height:140px;overflow:hidden}
+.ws-orch-body .ws-ln .car{background:var(--pink);box-shadow:0 0 10px var(--pink)}
+.ws-orch-body .ws-ln .k{color:var(--pink)}
+
+/* Skills-library counter + "pattern learned" toast */
+.ws-counter{
+  display:inline-block;padding:1px 8px;margin-left:6px;border-radius:4px;
+  background:rgba(16,225,156,.15);color:var(--green);font-family:var(--mono);
+  font-weight:700;font-size:11px;letter-spacing:.05em;
+  transition:transform .35s cubic-bezier(.16,1,.3,1), color .35s, background .35s, box-shadow .35s;
+}
+.ws-counter.bump{transform:scale(1.55);color:#fff;background:var(--violet);box-shadow:0 0 18px var(--violet)}
+
+.ws-toast{
+  position:absolute;left:50%;top:0;transform:translateX(-50%) translateY(-12px);
+  padding:7px 18px;border-radius:24px;
+  background:linear-gradient(90deg,rgba(139,92,246,.22),rgba(34,211,238,.22));
+  border:1px solid rgba(139,92,246,.55);
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:#fff;
+  box-shadow:0 0 28px rgba(139,92,246,.55), 0 8px 24px rgba(0,0,0,.35);
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease, transform .55s cubic-bezier(.22,1,.36,1);
+  white-space:nowrap;z-index:20;
+}
+.ws-toast.show{opacity:1;transform:translateX(-50%) translateY(14px)}
+.ws-toast .star{color:var(--violet);margin-right:8px;text-shadow:0 0 12px var(--violet);font-size:14px;vertical-align:-1px}
+.ws-toast .key{color:var(--cyan);margin-left:4px}
+
+/* Skill panel — flash whole panel on new learning */
+.ws-panel.learning{
+  border-color:var(--violet);
+  box-shadow:0 0 0 1px var(--violet), 0 0 32px rgba(139,92,246,.35);
+  transition:border-color .4s, box-shadow .4s;
+}
+
+/* ── Agent Workshop (live multi-agent experiment) ── */
+.workshop-section{padding-top:40px}
+.ws{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;margin-top:36px}
+@media (max-width:980px){.ws{grid-template-columns:1fr}}
+
+.ws-agents{display:flex;flex-direction:column;gap:6px}
+.ws-arrow{align-self:center;color:var(--muted);font-size:18px;line-height:1;opacity:.45;transition:opacity .35s,color .35s}
+.ws-arrow.lit{opacity:1;color:var(--violet)}
+
+.ws-agent{
+  border:1px solid var(--border);
+  border-left:3px solid var(--ac);
+  background:linear-gradient(180deg,rgba(20,22,32,.7),rgba(12,14,20,.55));
+  border-radius:10px;overflow:hidden;
+  transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s, border-color .25s, opacity .35s;
+  opacity:.55;
+}
+.ws-agent.active{opacity:1;transform:translateY(-1px);box-shadow:0 0 0 1px var(--ac), 0 18px 50px -22px rgba(0,0,0,.7)}
+.ws-agent.done{opacity:.8}
+
+.ws-head{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 14px;font-size:12px;
+  background:rgba(255,255,255,.025);
+  border-bottom:1px solid var(--border);
+}
+.ws-dot{width:8px;height:8px;border-radius:50%;background:var(--ac);opacity:.35;transition:opacity .2s}
+.ws-agent.active .ws-dot{opacity:1;box-shadow:0 0 12px var(--ac);animation:wsPulse 1.4s infinite ease-in-out}
+.ws-name{flex:1;color:var(--text);font-weight:600;letter-spacing:.02em}
+.ws-stage{color:var(--ac);font-size:10px;letter-spacing:.16em;font-weight:600;opacity:.85}
+
+.ws-body{
+  padding:12px 16px 14px;
+  font-size:12.5px;line-height:1.65;color:var(--dim);
+  min-height:120px;
+}
+.ws-ln{display:block;opacity:0;transform:translateY(3px);transition:opacity .25s, transform .25s}
+.ws-ln.show{opacity:1;transform:translateY(0)}
+.ws-ln .k{color:var(--ac);font-weight:600}
+.ws-ln .v{color:var(--text)}
+.ws-ln .g{color:var(--green)}
+.ws-ln .o{color:var(--orange)}
+.ws-ln .r{color:var(--pink)}
+.ws-ln .m{color:var(--muted)}
+.ws-ln .h{color:var(--violet);font-weight:600}
+.ws-caret{display:inline-block;width:6px;height:12px;background:var(--ac);margin-left:3px;vertical-align:-1px;animation:wsBlink 1s steps(2) infinite}
+/* live typing caret per line */
+.ws-ln .car{display:inline-block;width:6px;height:13px;background:var(--ac);margin-left:1px;vertical-align:-2px;animation:wsBlink .7s steps(2) infinite;box-shadow:0 0 8px var(--ac)}
+
+/* Walking robot courier — runs between orchestrator and subagents */
+.ws-agents{position:relative}
+.ws-bot{
+  position:absolute;left:50%;top:0;transform:translate(-50%,-50%);
+  width:34px;height:42px;
+  opacity:0;pointer-events:none;z-index:7;
+  --bc:var(--violet);
+  filter:drop-shadow(0 0 6px var(--bc)) drop-shadow(0 0 14px rgba(139,92,246,.45));
+  transition:top 1.0s cubic-bezier(.45,.05,.55,.95), opacity .3s ease, filter .25s;
+}
+.ws-bot.green{--bc:var(--green);filter:drop-shadow(0 0 6px var(--green)) drop-shadow(0 0 14px rgba(16,225,156,.5))}
+.ws-bot.cyan{--bc:var(--cyan);filter:drop-shadow(0 0 6px var(--cyan)) drop-shadow(0 0 14px rgba(34,211,238,.5))}
+.ws-bot.orange{--bc:var(--orange);filter:drop-shadow(0 0 6px var(--orange)) drop-shadow(0 0 14px rgba(245,158,11,.5))}
+.ws-bot.violet{--bc:var(--violet);filter:drop-shadow(0 0 6px var(--violet)) drop-shadow(0 0 14px rgba(139,92,246,.5))}
+.ws-bot.pink{--bc:var(--pink);filter:drop-shadow(0 0 6px var(--pink)) drop-shadow(0 0 14px rgba(236,72,153,.5))}
+
+.bot-head,.bot-body{fill:#0E1018;stroke:var(--bc);stroke-width:1.2}
+.bot-eye{fill:var(--bc)}
+.bot-mouth{stroke:var(--bc);stroke-width:1;opacity:.55}
+.bot-antenna-line{stroke:var(--bc);stroke-width:1}
+.bot-antenna{fill:var(--bc)}
+.bot-arm,.bot-leg{fill:var(--bc);opacity:.92}
+.bot-led{fill:var(--bc)}
+.ws-bot.walking .bot-led{animation:botLed .9s infinite ease-in-out}
+.ws-bot.walking .bot-antenna{animation:botLed 1.4s infinite ease-in-out}
+@keyframes botLed{0%,100%{opacity:.45}50%{opacity:1}}
+
+/* Walking gait — legs alternate, arms swing, body bobs (transform-box keeps origin in element) */
+.bot-leg,.bot-arm,.bot-inner{transform-box:fill-box}
+.ws-bot.walking .leg-l{animation:legStep .42s infinite ease-in-out;transform-origin:center top}
+.ws-bot.walking .leg-r{animation:legStep .42s infinite ease-in-out .21s;transform-origin:center top}
+@keyframes legStep{
+  0%,100%{transform:translateY(0) scaleY(1)}
+  50%{transform:translateY(-2.5px) scaleY(.72)}
+}
+.ws-bot.walking .arm-l{animation:armSwing .42s infinite ease-in-out .21s;transform-origin:center top}
+.ws-bot.walking .arm-r{animation:armSwing .42s infinite ease-in-out;transform-origin:center top}
+@keyframes armSwing{
+  0%,100%{transform:rotate(0)}
+  50%{transform:rotate(8deg) translateY(-1px)}
+}
+.ws-bot.walking .bot-inner{animation:bodyBob .42s infinite ease-in-out;transform-origin:center}
+@keyframes bodyBob{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-1px)}
+}
+
+/* Tiny package shown on the bot's head when carrying a task or report */
+.bot-pkg{fill:var(--bc);opacity:0;transition:opacity .2s}
+.ws-bot.carrying .bot-pkg{opacity:.95}
+
+/* Approval shake/pulse on agent card while gated */
+.ws-agent.gated{animation:wsGated 1.2s infinite ease-in-out}
+@keyframes wsGated{0%,100%{box-shadow:0 0 0 1px var(--orange),0 0 24px rgba(245,158,11,.0)}50%{box-shadow:0 0 0 1px var(--orange),0 0 28px rgba(245,158,11,.45)}}
+
+/* Skill diff reveal */
+.ws-skill-diff{
+  margin:0 14px;padding:0 10px;font-size:11px;line-height:1.55;
+  background:rgba(0,0,0,.32);border:1px solid var(--border);border-radius:6px;
+  color:var(--muted);font-family:var(--mono);
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .55s cubic-bezier(.22,1,.36,1), opacity .3s, padding .3s, margin .3s;
+}
+.ws-skill-diff.show{max-height:160px;opacity:1;padding:8px 10px;margin:4px 14px 8px}
+.ws-skill-diff .add{color:var(--green);display:block;opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s}
+.ws-skill-diff .add.in{opacity:1;transform:translateX(0)}
+.ws-skill-diff .add::before{content:'+ ';color:var(--green);opacity:.85;font-weight:700}
+.ws-skill-diff.cyan .add{color:var(--cyan)}
+.ws-skill-diff.cyan .add::before{color:var(--cyan)}
+.ws-skill-diff.orange .add{color:var(--orange)}
+.ws-skill-diff.orange .add::before{color:var(--orange)}
+.ws-skill-diff.violet .add{color:var(--violet)}
+.ws-skill-diff.violet .add::before{color:var(--violet)}
+
+@keyframes wsBlink{50%{opacity:0}}
+@keyframes wsPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.45);opacity:.55}}
+
+.ws-side{display:flex;flex-direction:column;gap:14px;min-width:0}
+.ws-panel{
+  border:1px solid var(--border);background:rgba(20,22,32,.55);
+  border-radius:10px;overflow:hidden;
+}
+.ws-phead{
+  padding:9px 14px;font-size:11px;letter-spacing:.08em;color:var(--dim);
+  border-bottom:1px solid var(--border);
+  background:rgba(255,255,255,.02);
+  display:flex;align-items:center;gap:8px;
+}
+.ws-pdot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.ws-pdot.pink{background:var(--pink);box-shadow:0 0 8px var(--pink)}
+.ws-pdot.green{background:var(--green);box-shadow:0 0 8px var(--green)}
+
+.ws-files{padding:6px 0}
+.ws-file{
+  padding:6px 14px;font-size:12px;color:var(--dim);
+  border-left:2px solid transparent;
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  transition:color .3s, background .3s, border-color .3s;
+  opacity:.4;
+}
+.ws-file.live{opacity:1;color:var(--text)}
+.ws-file.flash{background:rgba(139,92,246,.10);border-left-color:var(--violet);color:#fff}
+.ws-file .badge{font-size:9.5px;padding:1px 6px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.ws-file .badge.g{background:rgba(16,225,156,.14);color:var(--green)}
+.ws-file .badge.c{background:rgba(34,211,238,.14);color:var(--cyan)}
+.ws-file .badge.o{background:rgba(245,158,11,.14);color:var(--orange)}
+.ws-file .badge.v{background:rgba(139,92,246,.16);color:var(--violet)}
+
+.ws-log{
+  font-size:11.5px;line-height:1.55;color:var(--dim);
+  padding:10px 14px;
+  height:140px;overflow:hidden;
+}
+.ws-lg{display:block;opacity:0;transform:translateY(4px);transition:opacity .25s, transform .25s}
+.ws-lg.show{opacity:1;transform:translateY(0)}
+.ws-lg .ts{color:var(--muted);margin-right:8px}
+.ws-lg .src{display:inline-block;min-width:90px;color:var(--cyan);margin-right:6px}
+.ws-lg .src.green{color:var(--green)}
+.ws-lg .src.cyan{color:var(--cyan)}
+.ws-lg .src.orange{color:var(--orange)}
+.ws-lg .src.violet{color:var(--violet)}
+
+.ws-divergence{padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.ws-div-row{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--dim)}
+.ws-div-row .v{font-weight:600}
+.ws-div-row .v.g{color:var(--green)}
+.ws-div-row .v.c{color:var(--cyan)}
+.ws-div-row .v.o{color:var(--orange)}
+.ws-div-bar{height:4px;background:rgba(139,149,180,.12);border-radius:2px;overflow:hidden;margin-top:4px}
+.ws-div-bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--cyan));transition:width .8s cubic-bezier(.22,1,.36,1)}
+
+.ws-approval-pulse{
+  display:inline-block;padding:2px 8px;border-radius:4px;
+  background:rgba(245,158,11,.14);color:var(--orange);
+  font-size:10px;font-weight:600;letter-spacing:.08em;
+  animation:wsApproval 1.4s infinite ease-in-out;
+}
+@keyframes wsApproval{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.4)}50%{box-shadow:0 0 0 6px rgba(245,158,11,0)}}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- Blurred trading dashboard background -->
+<div class="dash-bg" aria-hidden="true">
+  <div class="dash-panel dash-prices">
+    <div class="dash-row"><span class="dash-label">BTC</span><span class="dash-up">0.67</span><span class="dash-dn">0.34</span><span class="dash-tag g">UP</span></div>
+    <div class="dash-row"><span class="dash-label">ETH</span><span class="dash-up">0.52</span><span class="dash-dn">0.49</span><span class="dash-tag g">UP</span></div>
+    <div class="dash-row"><span class="dash-label">SOL</span><span class="dash-up">0.44</span><span class="dash-dn">0.58</span><span class="dash-tag r">DN</span></div>
+    <div class="dash-row"><span class="dash-label">XRP</span><span class="dash-up">0.61</span><span class="dash-dn">0.40</span><span class="dash-tag g">UP</span></div>
+  </div>
+  <div class="dash-panel dash-stats">
+    <div class="dash-row"><span class="dash-label">PnL</span><span class="dash-val g">+$1,284.30</span></div>
+    <div class="dash-row"><span class="dash-label">Win Rate</span><span class="dash-val g">92.96%</span></div>
+    <div class="dash-row"><span class="dash-label">Resolved</span><span class="dash-val">4,218</span></div>
+    <div class="dash-row"><span class="dash-label">Open</span><span class="dash-val c">12</span></div>
+    <div class="dash-row"><span class="dash-label">Wins</span><span class="dash-val g">3,921</span></div>
+    <div class="dash-row"><span class="dash-label">Losses</span><span class="dash-val r">297</span></div>
+  </div>
+  <div class="dash-panel dash-table">
+    <div class="dash-hdr"><span>ASSET</span><span>TIER</span><span>ENTRY</span><span>PNL</span><span>WR</span></div>
+    <div class="dash-row"><span>BTC</span><span>T3</span><span>0.58</span><span class="g">+$42</span><span class="g">94%</span></div>
+    <div class="dash-row"><span>ETH</span><span>T2</span><span>0.61</span><span class="g">+$18</span><span>88%</span></div>
+    <div class="dash-row"><span>SOL</span><span>T1</span><span>0.54</span><span class="r">-$7</span><span class="r">46%</span></div>
+    <div class="dash-row"><span>BTC</span><span>T3</span><span>0.63</span><span class="g">+$31</span><span class="g">91%</span></div>
+    <div class="dash-row"><span>ETH</span><span>T2</span><span>0.57</span><span class="g">+$22</span><span class="g">90%</span></div>
+    <div class="dash-row"><span>XRP</span><span>T1</span><span>0.52</span><span class="g">+$9</span><span>67%</span></div>
+    <div class="dash-row"><span>SOL</span><span>T3</span><span>0.66</span><span class="g">+$38</span><span class="g">93%</span></div>
+    <div class="dash-row"><span>BTC</span><span>T2</span><span>0.59</span><span class="g">+$15</span><span>85%</span></div>
+  </div>
+  <div class="dash-panel dash-daily">
+    <div class="dash-hdr"><span>DATE</span><span>TRADES</span><span>PNL</span><span>WR</span></div>
+    <div class="dash-row"><span>Apr 19</span><span>148</span><span class="g">+$412</span><span class="g">93%</span></div>
+    <div class="dash-row"><span>Apr 18</span><span>162</span><span class="g">+$387</span><span class="g">91%</span></div>
+    <div class="dash-row"><span>Apr 17</span><span>155</span><span class="g">+$298</span><span>89%</span></div>
+    <div class="dash-row"><span>Apr 16</span><span>171</span><span class="g">+$524</span><span class="g">95%</span></div>
+    <div class="dash-row"><span>Apr 15</span><span>139</span><span class="g">+$201</span><span>87%</span></div>
+    <div class="dash-row"><span>Apr 14</span><span>144</span><span class="r">-$62</span><span class="r">48%</span></div>
+    <div class="dash-row"><span>Apr 13</span><span>158</span><span class="g">+$445</span><span class="g">94%</span></div>
+  </div>
+  <div class="dash-panel dash-controls">
+    <div class="dash-btn g-btn">START</div>
+    <div class="dash-btn r-btn">STOP</div>
+    <div class="dash-btn o-btn">RESTART</div>
+    <div class="dash-status"><span class="dot-g"></span>tiered-momentum-real: online</div>
+    <div class="dash-status"><span class="dot-g"></span>poll-tiered-real: online</div>
+    <div class="dash-status"><span class="dot-o"></span>resolve-tiered: pending</div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-brand mono">PORTFOLIO CO.</div>
+  <div class="nav-links">
+    <a href="#edge">Edge</a>
+    <a href="#strategies">Strategies</a>
+    <a href="#performance">Performance</a>
+  </div>
+</nav>
+
+<!-- Hero · Workshop -->
+<section class="hero hero-v2" id="hero">
+  <div class="hero-top">
+    <div class="hero-bar"></div>
+    <h1 class="hero-title">Portfolio Co.</h1>
+    <p class="hero-sub">Agentic Trading Infrastructure</p>
+    <div class="hero-tags mono">
+      <span>Prediction Markets</span>
+      <span class="dot">*</span>
+      <span>AI Agents</span>
+      <span class="dot">*</span>
+      <span>Structural Edge</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="pitch/" class="btn btn-primary">Investor Deck</a>
+    </div>
+  </div>
+</section>
+
+<!-- Agent Workshop -->
+<section class="section workshop-section workshop-hero" id="workshop">
+  <div class="container reveal">
+    <div class="section-label mono ws-tagline">A SWARM OF AGENTS · ONE EXPERIMENT &mdash; DISCOVER → BUILD → GATE → LIVE → LEARN</div>
+
+    <div class="ws" id="ws-root">
+      <div class="ws-toast" id="ws-toast"><span class="star">✦</span><span>pattern learned</span><span class="key" id="ws-toast-key"></span></div>
+      <div class="ws-agents">
+        <svg class="ws-bot" id="ws-bot" viewBox="0 0 28 38" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g class="bot-inner">
+            <line x1="14" y1="3" x2="14" y2="0" class="bot-antenna-line" />
+            <circle cx="14" cy="0" r="1.6" class="bot-antenna" />
+            <rect x="6" y="3" width="16" height="11" rx="2.5" class="bot-head" />
+            <circle cx="10.5" cy="9" r="1.4" class="bot-eye" />
+            <circle cx="17.5" cy="9" r="1.4" class="bot-eye" />
+            <line x1="11" y1="12" x2="17" y2="12" class="bot-mouth" />
+            <rect x="4" y="15" width="20" height="13" rx="2" class="bot-body" />
+            <circle cx="14" cy="21" r="1.8" class="bot-led" />
+            <rect x="4" y="-2" width="6" height="3" rx="0.6" class="bot-pkg" />
+            <rect x="1.5" y="16" width="2.5" height="9" rx="1" class="bot-arm arm-l" />
+            <rect x="24" y="16" width="2.5" height="9" rx="1" class="bot-arm arm-r" />
+            <rect x="8" y="28" width="4" height="8" rx="1" class="bot-leg leg-l" />
+            <rect x="16" y="28" width="4" height="8" rx="1" class="bot-leg leg-r" />
+          </g>
+        </svg>
+        <div class="ws-orch" id="ws-orch">
+          <div class="ws-orch-head">
+            <span class="ws-orch-dot"></span>
+            <span class="ws-orch-name mono">orchestrator · portco-001</span>
+            <span class="ws-orch-stage mono">PLAN · DISPATCH · LEARN</span>
+          </div>
+          <div class="ws-orch-body mono" id="ws-orch-body"></div>
+        </div>
+        <div class="ws-arrow" id="ws-ar0">&darr;</div>
+        <div class="ws-agent" id="ws-a1" style="--ac:var(--green)">
+          <div class="ws-head">
+            <span class="ws-dot"></span>
+            <span class="ws-name mono">agent · backtest-trader</span>
+            <span class="ws-stage mono">stage 1 · DISCOVER</span>
+          </div>
+          <div class="ws-body mono" id="ws-b1"></div>
+        </div>
+        <div class="ws-arrow" id="ws-ar1">&darr;</div>
+        <div class="ws-agent" id="ws-a2" style="--ac:var(--cyan)">
+          <div class="ws-head">
+            <span class="ws-dot"></span>
+            <span class="ws-name mono">agent · shadow-builder</span>
+            <span class="ws-stage mono">stage 2 · BUILD</span>
+          </div>
+          <div class="ws-body mono" id="ws-b2"></div>
+        </div>
+        <div class="ws-arrow" id="ws-ar2">&darr;</div>
+        <div class="ws-agent" id="ws-a3" style="--ac:var(--orange)">
+          <div class="ws-head">
+            <span class="ws-dot"></span>
+            <span class="ws-name mono">agent · approval-broker</span>
+            <span class="ws-stage mono">stage 3 · HUMAN GATE</span>
+          </div>
+          <div class="ws-body mono" id="ws-b3"></div>
+        </div>
+        <div class="ws-arrow" id="ws-ar3">&darr;</div>
+        <div class="ws-agent" id="ws-a4" style="--ac:var(--violet)">
+          <div class="ws-head">
+            <span class="ws-dot"></span>
+            <span class="ws-name mono">agent · real-trader</span>
+            <span class="ws-stage mono">stage 4 · LIVE + LEARN</span>
+          </div>
+          <div class="ws-body mono" id="ws-b4"></div>
+        </div>
+      </div>
+
+      <div class="ws-side">
+        <div class="ws-panel">
+          <div class="ws-phead mono"><span class="ws-pdot"></span>skills/ &mdash; library<span class="ws-counter" id="ws-counter">0</span><span style="margin-left:6px;color:var(--muted);font-size:10px">patterns committed</span></div>
+          <div class="ws-files" id="ws-files">
+            <div class="ws-file" data-file="0"><span>btc-momentum-001.md</span><span class="badge g" style="display:none">+pattern</span></div>
+            <div class="ws-skill-diff" data-diff="0">
+              <span class="add">edge: tick-1 leader · btc-5m</span>
+              <span class="add">wr_threshold: 0.873</span>
+              <span class="add">sample_n: 2384</span>
+            </div>
+            <div class="ws-file" data-file="1"><span>btc-momentum-001.md</span><span class="badge c" style="display:none">+shadow</span></div>
+            <div class="ws-skill-diff cyan" data-diff="1">
+              <span class="add">shadow_bot: shadow-btc-mom-001</span>
+              <span class="add">stake_per_trade: 5</span>
+              <span class="add">fill_sim: ws-tick-realistic</span>
+            </div>
+            <div class="ws-file" data-file="2"><span>btc-momentum-001.md</span><span class="badge o" style="display:none">+approved</span></div>
+            <div class="ws-skill-diff orange" data-diff="2">
+              <span class="add">approved_by: operator@portco</span>
+              <span class="add">approved_at: 2026-04-30T07:14Z</span>
+              <span class="add">cap: 500</span>
+            </div>
+            <div class="ws-file" data-file="3"><span>btc-momentum-001.md</span><span class="badge v" style="display:none">+live</span></div>
+            <div class="ws-skill-diff violet" data-diff="3">
+              <span class="add">real_bot: real-btc-mom-001</span>
+              <span class="add">divergence_band_3sigma: 0.04</span>
+            </div>
+            <div class="ws-file" data-file="4"><span>learnings.md</span><span class="badge v" style="display:none">commit</span></div>
+            <div class="ws-skill-diff violet" data-diff="4">
+              <span class="add">pattern: btc-momentum-001 → +$31/d real · +$28/d shadow · corr 0.94</span>
+            </div>
+          </div>
+        </div>
+        <div class="ws-panel">
+          <div class="ws-phead mono"><span class="ws-pdot pink"></span>experiments/btc-momentum-001.log</div>
+          <div class="ws-log" id="ws-log"></div>
+        </div>
+        <div class="ws-panel">
+          <div class="ws-phead mono"><span class="ws-pdot green"></span>shadow vs real &mdash; live divergence</div>
+          <div class="ws-divergence">
+            <div class="ws-div-row"><span>shadow PnL (7d)</span><span class="v g" id="ws-shad">+$0</span></div>
+            <div class="ws-div-row"><span>real PnL (live)</span><span class="v g" id="ws-real">+$0</span></div>
+            <div class="ws-div-row"><span>&Delta; divergence</span><span class="v c" id="ws-div">$0.00</span></div>
+            <div class="ws-div-bar"><div class="ws-div-bar-fill" id="ws-div-bar"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Agent Pipeline Animation -->
+<section class="section pipeline-anim-section" id="pipeline-anim">
+  <div class="container reveal" id="pipeline-trigger">
+    <div class="section-label mono">THE AGENT PIPELINE</div>
+    <h2 class="section-headline compact">Edge to execution. <span class="green">Autonomous.</span></h2>
+
+    <div class="ap">
+      <!-- Track line + traveling pulse -->
+      <div class="ap-track">
+        <div class="ap-line"></div>
+        <div class="ap-glow" id="ap-glow"></div>
+      </div>
+
+      <!-- 8 nodes -->
+      <div class="ap-nodes">
+        <div class="ap-node" data-idx="0" style="--c:var(--green)">
+          <div class="ap-dot"></div>
+          <div class="ap-label">Edge Detection</div>
+          <div class="ap-tag ap-auto">AUTO</div>
+        </div>
+        <div class="ap-node" data-idx="1" style="--c:var(--green)">
+          <div class="ap-dot"></div>
+          <div class="ap-label">Filter Discovery</div>
+          <div class="ap-tag ap-auto">AUTO</div>
+        </div>
+        <div class="ap-node" data-idx="2" style="--c:var(--orange)">
+          <div class="ap-dot"></div>
+          <div class="ap-label">Shadow Built</div>
+          <div class="ap-tag ap-approval">APPROVAL</div>
+        </div>
+        <div class="ap-node" data-idx="3" style="--c:var(--green)">
+          <div class="ap-dot"></div>
+          <div class="ap-label">Shadow Validation</div>
+          <div class="ap-tag ap-auto">7+ DAYS</div>
+        </div>
+        <div class="ap-node" data-idx="4" style="--c:var(--orange)">
+          <div class="ap-dot"></div>
+          <div class="ap-label">Real Proposal</div>
+          <div class="ap-tag ap-approval">APPROVAL</div>
+        </div>
+        <div class="ap-node" data-idx="5" style="--c:var(--green)">
+          <div class="ap-dot"></div>
+          <div class="ap-label">Real Deploy</div>
+          <div class="ap-tag ap-auto">AUTO</div>
+        </div>
+        <div class="ap-node" data-idx="6" style="--c:var(--violet)">
+          <div class="ap-dot"></div>
+          <div class="ap-label">Live Monitoring</div>
+          <div class="ap-tag ap-live">CONTINUOUS</div>
+        </div>
+        <div class="ap-node" data-idx="7" style="--c:var(--orange)">
+          <div class="ap-dot"></div>
+          <div class="ap-label">Retirement</div>
+          <div class="ap-tag ap-approval">APPROVAL</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ap-legend mono">
+      <span><span class="ap-legend-dot" style="background:var(--green)"></span>Automated</span>
+      <span><span class="ap-legend-dot" style="background:var(--orange)"></span>Requires Approval</span>
+      <span><span class="ap-legend-dot" style="background:var(--violet)"></span>Continuous</span>
+    </div>
+  </div>
+</section>
+
+<!-- The Numbers -->
+<section class="section" id="edge">
+  <div class="container reveal">
+    <div class="section-label mono">THE OPPORTUNITY</div>
+    <div class="numbers-row">
+      <div class="number-block">
+        <div class="big-num cyan glow-cyan mono" data-count="20" data-prefix="$" data-suffix="B">$0</div>
+        <div class="num-label">Monthly Volume<br/><span class="muted">Today</span></div>
+      </div>
+      <div class="number-arrow mono">&#8594;</div>
+      <div class="number-block">
+        <div class="big-num green glow-green mono" data-count="10" data-prefix="$" data-suffix="B">$0</div>
+        <div class="num-label">Daily Volume<br/><span class="muted">Projected</span></div>
+      </div>
+    </div>
+    <p class="section-lede">
+      Prediction markets are the fastest-growing asset class.<br/>
+      <span class="accent">Nobody has built quant infrastructure for them. Yet.</span>
+    </p>
+  </div>
+</section>
+
+<!-- What We Build -->
+<section class="section section-dark" id="what">
+  <div class="container reveal">
+    <div class="section-label mono">WHAT WE BUILD</div>
+    <h2 class="section-headline">AI agents that find<br/><span class="green glow-green">probabilistic edge</span><br/>and execute autonomously.</h2>
+    <div class="loop-row">
+      <div class="loop-step"><div class="loop-bar cyan-bg"></div><div class="loop-name">Monitor</div></div>
+      <div class="loop-arrow mono">&#8250;</div>
+      <div class="loop-step"><div class="loop-bar pink-bg"></div><div class="loop-name">Detect</div></div>
+      <div class="loop-arrow mono">&#8250;</div>
+      <div class="loop-step"><div class="loop-bar violet-bg"></div><div class="loop-name">Validate</div></div>
+      <div class="loop-arrow mono">&#8250;</div>
+      <div class="loop-step"><div class="loop-bar green-bg"></div><div class="loop-name">Deploy</div></div>
+      <div class="loop-arrow mono">&#8250;</div>
+      <div class="loop-step"><div class="loop-bar orange-bg"></div><div class="loop-name">Adapt</div></div>
+    </div>
+    <p class="section-sub muted">No traders. No analysts. Just code and capital.</p>
+  </div>
+</section>
+
+<!-- Strategies -->
+<section class="section" id="strategies">
+  <div class="container reveal">
+    <div class="section-label mono">THE ARSENAL</div>
+    <h2 class="section-headline compact">7 live strategies.<br/><span class="cyan">Agent-discovered.</span></h2>
+    <div class="strat-grid">
+      <div class="strat-card" style="--ac:var(--cyan)">
+        <div class="sc-bar"></div>
+        <div class="sc-name">Bundle Arb</div>
+        <div class="sc-desc">Buy both sides below $1</div>
+        <div class="sc-stat mono glow-cyan" data-count="100" data-suffix="%" >0%</div>
+        <div class="sc-stat-label mono">WIN RATE</div>
+      </div>
+      <div class="strat-card" style="--ac:var(--green)">
+        <div class="sc-bar"></div>
+        <div class="sc-name">Flip 95c</div>
+        <div class="sc-desc">Leader buy at 95c</div>
+        <div class="sc-stat mono glow-green" data-count="96.6" data-decimals="1" data-suffix="%">0%</div>
+        <div class="sc-stat-label mono">WIN RATE</div>
+      </div>
+      <div class="strat-card" style="--ac:var(--violet)">
+        <div class="sc-bar"></div>
+        <div class="sc-name">AllAgree 87c</div>
+        <div class="sc-desc">Cross-asset confirmation</div>
+        <div class="sc-stat mono glow-violet" data-count="92.96" data-decimals="2" data-suffix="%">0%</div>
+        <div class="sc-stat-label mono">WIN RATE</div>
+      </div>
+      <div class="strat-card" style="--ac:var(--orange)">
+        <div class="sc-bar"></div>
+        <div class="sc-name">First-Tick Momentum</div>
+        <div class="sc-desc">Tick-1 leader entry</div>
+        <div class="sc-stat mono glow-orange" data-count="3.2" data-decimals="1" data-prefix="+$" data-suffix="K">+$0</div>
+        <div class="sc-stat-label mono">28-DAY PNL</div>
+      </div>
+      <div class="strat-card" style="--ac:var(--pink)">
+        <div class="sc-bar"></div>
+        <div class="sc-name">Hedged Sequence</div>
+        <div class="sc-desc">Arb-cushioned directional</div>
+        <div class="sc-stat mono glow-pink">z = 72.7</div>
+        <div class="sc-stat-label mono">STAT EDGE</div>
+      </div>
+      <div class="strat-card" style="--ac:var(--red)">
+        <div class="sc-bar"></div>
+        <div class="sc-name">Underdog Premarket</div>
+        <div class="sc-desc">Contrarian entry &le; 47c</div>
+        <div class="sc-stat mono" style="color:var(--red)" data-count="18.9" data-decimals="1" data-prefix="+$" data-suffix="K">+$0</div>
+        <div class="sc-stat-label mono">37-DAY PNL</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Performance -->
+<section class="section section-dark" id="performance">
+  <div class="container reveal">
+    <div class="section-label mono">BY THE NUMBERS</div>
+    <h2 class="section-headline compact">Validated on live data.<br/><span class="green">Before deploying a dollar.</span></h2>
+    <div class="perf-grid">
+      <div class="perf-card">
+        <div class="perf-num cyan glow-cyan mono" data-count="8" data-suffix="M+">0</div>
+        <div class="perf-label">Price Ticks</div>
+      </div>
+      <div class="perf-card">
+        <div class="perf-num green glow-green mono" data-count="25" data-suffix="K+">0</div>
+        <div class="perf-label">Resolved Markets</div>
+      </div>
+      <div class="perf-card">
+        <div class="perf-num violet glow-violet mono" data-count="31.8" data-decimals="1" data-prefix="+$" data-suffix="K">+$0</div>
+        <div class="perf-label">AllAgree 26-Day PnL</div>
+      </div>
+      <div class="perf-card">
+        <div class="perf-num orange glow-orange mono">26/26</div>
+        <div class="perf-label">Profitable Days</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-name">Portfolio Co.</div>
+      <div class="footer-tagline muted">Autonomous. Data-Driven. Scalable.</div>
+    </div>
+    <div class="footer-links">
+      <a href="pitch/">Investor Deck</a>
+    </div>
+    <div class="footer-copy mono muted">&copy; 2026 Portfolio Co. Confidential.</div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  /* ─── Particle canvas ─── */
+  const cv = document.getElementById('particles');
+  const ctx = cv.getContext('2d');
+  let W, H;
+  const pts = [];
+  const N = 55;
+
+  function resize() { W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
+  window.addEventListener('resize', resize); resize();
+
+  for (let i = 0; i < N; i++) pts.push({
+    x: Math.random()*W, y: Math.random()*H,
+    vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25,
+    r: Math.random()*1.6+0.6
+  });
+
+  function frame() {
+    ctx.clearRect(0,0,W,H);
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x<0) p.x=W; if (p.x>W) p.x=0;
+      if (p.y<0) p.y=H; if (p.y>H) p.y=0;
+      ctx.fillStyle = `rgba(139,92,246,${0.25+p.r*0.15})`;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+    }
+    for (let i=0;i<N;i++) for (let j=i+1;j<N;j++){
+      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<140){
+        ctx.strokeStyle=`rgba(139,92,246,${0.07*(1-d/140)})`;
+        ctx.lineWidth=0.6;
+        ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+
+  /* ─── Scroll reveal + count-up ─── */
+  const ease = t => 1-Math.pow(1-t,3);
+
+  function countUp(el) {
+    if (el.dataset.done==='1') return;
+    const target = parseFloat(el.dataset.count);
+    if (isNaN(target)) return;
+    const pre = el.dataset.prefix||'', suf = el.dataset.suffix||'';
+    const dec = parseInt(el.dataset.decimals||'0',10);
+    const dur = 1200; let start=null;
+    const step = ts => {
+      if(!start) start=ts;
+      const p = Math.min((ts-start)/dur,1);
+      el.textContent = pre + (target*ease(p)).toFixed(dec) + suf;
+      if(p<1) requestAnimationFrame(step);
+      else el.dataset.done='1';
+    };
+    requestAnimationFrame(step);
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        e.target.querySelectorAll('[data-count]').forEach(countUp);
+      }
+    });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* ─── Pipeline animation ─── */
+  const pipeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.dataset.played) {
+        e.target.dataset.played = '1';
+        runPipeline();
+      }
+    });
+  }, { threshold: 0.3 });
+  const pipeTrigger = document.getElementById('pipeline-trigger');
+  if (pipeTrigger) pipeObs.observe(pipeTrigger);
+
+  function runPipeline() {
+    const nodes = document.querySelectorAll('.ap-node');
+    const glow = document.getElementById('ap-glow');
+    const total = nodes.length;
+    const stepMs = 450;          // time per step
+    const pauseMs = 200;         // extra pause on approval steps
+
+    glow.style.opacity = '1';
+    glow.style.transition = 'none';
+
+    let t = 0;
+    nodes.forEach((node, i) => {
+      const isApproval = node.querySelector('.ap-approval');
+      const delay = t;
+
+      // Move glow to this node's position
+      setTimeout(() => {
+        const pct = (i / (total - 1)) * 90 + 3;   // 3% to 93%
+        glow.style.transition = `left ${stepMs * 0.7}ms cubic-bezier(.22,1,.36,1)`;
+        glow.style.left = pct + '%';
+
+        // Light up previous node as "done"
+        if (i > 0) nodes[i - 1].classList.replace('lit', 'done');
+
+        // Light up current node
+        node.classList.add('lit');
+      }, delay);
+
+      t += stepMs + (isApproval ? pauseMs : 0);
+    });
+
+    // Final: mark last node done, fade glow
+    setTimeout(() => {
+      nodes[total - 1].classList.replace('lit', 'done');
+      glow.style.transition = 'opacity .6s ease';
+      glow.style.opacity = '0.3';
+    }, t + 300);
+
+    // Loop: reset after pause, replay
+    setTimeout(() => {
+      nodes.forEach(n => { n.classList.remove('lit', 'done'); });
+      glow.style.transition = 'opacity .4s ease';
+      glow.style.opacity = '0';
+      setTimeout(() => runPipeline(), 600);
+    }, t + 3000);
+  }
+
+  /* ─── Agent Workshop animation ─── */
+  const wsRoot = document.getElementById('ws-root');
+  if (wsRoot) {
+    const wsObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !e.target.dataset.played) {
+          e.target.dataset.played = '1';
+          runWorkshop();
+        }
+      });
+    }, { threshold: 0.2 });
+    wsObs.observe(wsRoot);
+  }
+
+  function runWorkshop(){
+    const SPEED = 3;       // > 1 = faster animation everywhere in this loop
+    const f = (ms) => Math.round(ms / SPEED);
+
+    const agents = [
+      {
+        agent: 'ws-a1', body: 'ws-b1', arrow: 'ws-ar1', src: 'green',
+        lines: [
+          ['$ <span class="k">backtest-trader</span> --asset btc --window 5m', 0],
+          ['<span class="m">[scan]</span>  8.2M ticks · 25,143 markets', 280],
+          ['<span class="m">[fit]</span>   edge: <span class="v">tick-1 leader</span> · WR <span class="g">87.3%</span>', 360],
+          ['<span class="m">[write]</span> <span class="v">skills/btc-momentum-001.md</span> <span class="g">✓</span>', 420],
+          ['<span class="m">[done]</span>  hand-off → shadow-builder', 320],
+        ],
+        log: [
+          ['backtest', 'green', 'scanning ws_asset_price_ticks · n=8.2M'],
+          ['backtest', 'green', 'edge confirmed wr=87.3 z=4.1 n=2384'],
+          ['skills',   'green', 'wrote btc-momentum-001.md (+pattern)'],
+        ],
+        onEnd: () => { flashFile(0); }
+      },
+      {
+        agent: 'ws-a2', body: 'ws-b2', arrow: 'ws-ar2', src: 'cyan',
+        lines: [
+          ['$ <span class="k">shadow-builder</span> --skill btc-momentum-001', 0],
+          ['<span class="m">[clone]</span>  template: tiered-momentum-shadow', 300],
+          ['<span class="m">[wire]</span>   ws-feeds · fill-sim · pnl-tracker', 320],
+          ['<span class="m">[pm2]</span>    start <span class="v">shadow-btc-mom-001</span> <span class="g">✓</span>', 360],
+          ['<span class="m">[watch]</span>  day 7/7 · <span class="g">+$420</span> · WR <span class="g">89%</span> · 0 anomalies', 420],
+          ['<span class="m">[update]</span> skills/btc-momentum-001.md (+shadow_id)', 320],
+        ],
+        log: [
+          ['shadow',   'cyan', 'pm2 start shadow-btc-mom-001'],
+          ['shadow',   'cyan', 'day 1 fills=18 pnl=+$58 wr=91'],
+          ['shadow',   'cyan', 'day 7 fills=142 pnl=+$420 wr=89'],
+          ['skills',   'cyan', 'patched btc-momentum-001.md (+shadow_id)'],
+        ],
+        onEnd: () => { flashFile(1); animateShadow(420); }
+      },
+      {
+        agent: 'ws-a3', body: 'ws-b3', arrow: 'ws-ar3', src: 'orange',
+        lines: [
+          ['$ <span class="k">approval-broker</span> --bot shadow-btc-mom-001', 0],
+          ['<span class="m">[evidence]</span> 7d shadow · 142 fills · <span class="g">+$420</span>', 320],
+          ['<span class="m">[risk]</span>     max-dd $34 · stake/trade $5 · cap $500', 320],
+          ['<span class="m">[gate]</span>     <span class="o">awaiting human approval ⏳</span>', 380],
+          ['<span class="h">&gt;</span> approved by operator@portco', 1100],
+          ['<span class="m">[update]</span>  skills/btc-momentum-001.md (+approved)', 320],
+        ],
+        log: [
+          ['approval', 'orange', 'proposal posted · evidence-bundle attached'],
+          ['approval', 'orange', 'awaiting human signoff...'],
+          ['approval', 'orange', 'APPROVED by operator@portco'],
+          ['skills',   'orange', 'patched btc-momentum-001.md (+approved)'],
+        ],
+        onEnd: () => { flashFile(2); }
+      },
+      {
+        agent: 'ws-a4', body: 'ws-b4', arrow: null, src: 'violet',
+        lines: [
+          ['$ <span class="k">real-trader</span> --bot real-btc-mom-001', 0],
+          ['<span class="m">[live]</span>   fill BTC@0.61 · stake $5 <span class="g">✓</span>', 340],
+          ['<span class="m">[Δ]</span>      real vs shadow = <span class="g">-$0.04</span> <span class="m">(in-band)</span>', 280],
+          ['<span class="m">[live]</span>   fill BTC@0.58 · stake $5 <span class="g">✓</span>', 340],
+          ['<span class="m">[Δ]</span>      real vs shadow = <span class="g">+$0.02</span> <span class="m">(in-band)</span>', 280],
+          ['<span class="m">[pnl]</span>    day 1 · real <span class="g">+$31</span> · shadow <span class="g">+$28</span>', 360],
+          ['<span class="m">[commit]</span> pattern → <span class="v">skills/learnings.md</span> <span class="g">✓</span>', 360],
+        ],
+        log: [
+          ['real',     'violet', 'pm2 start real-btc-mom-001'],
+          ['real',     'violet', 'fill mid=0.61 stake=5 ts=t+12'],
+          ['real',     'violet', 'fill mid=0.58 stake=5 ts=t+47'],
+          ['monitor',  'violet', 'divergence Δ=$0.02 within 3σ band'],
+          ['real',     'violet', 'day 1 pnl=+$31 shadow=+$28 corr=0.94'],
+          ['skills',   'violet', 'committed pattern → learnings.md'],
+        ],
+        onEnd: () => { flashFile(3); flashFile(4); animateReal(31); }
+      },
+    ];
+
+    function setActive(idx){
+      agents.forEach((a, i) => {
+        const el = document.getElementById(a.agent);
+        if (!el) return;
+        el.classList.remove('active');
+        if (i < idx) el.classList.add('done');
+        if (i === idx) el.classList.add('active');
+      });
+      agents.forEach((a, i) => {
+        if (!a.arrow) return;
+        const ar = document.getElementById(a.arrow);
+        if (!ar) return;
+        ar.classList.toggle('lit', i < idx);
+      });
+    }
+
+    // Type a single line char-by-char into `body`. Returns Promise that resolves when done.
+    function typeLine(body, html, color){
+      return new Promise(resolve => {
+        const span = document.createElement('span');
+        span.className = 'ws-ln show';
+        const txt = document.createTextNode('');
+        const car = document.createElement('span');
+        car.className = 'car';
+        span.appendChild(txt);
+        span.appendChild(car);
+        body.appendChild(span);
+        // strip tags for the typing pass
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        const plain = tmp.textContent;
+        // typing speed: jitter for organic feel
+        const baseMs = f(14);
+        const jitterMs = f(16);
+        let i = 0;
+        function step(){
+          if (i >= plain.length) {
+            // swap to fully formatted html, drop caret
+            span.innerHTML = html;
+            resolve();
+            return;
+          }
+          // add more chars per tick when SPEED is high so typing keeps up
+          const inc = Math.max(1, Math.round(SPEED)) + (plain.charCodeAt(i) % 2);
+          i = Math.min(i + inc, plain.length);
+          txt.nodeValue = plain.slice(0, i);
+          setTimeout(step, baseMs + Math.random() * jitterMs);
+        }
+        step();
+      });
+    }
+
+    function typeAgent(idx){
+      return new Promise(async (resolve) => {
+        const a = agents[idx];
+        const body = document.getElementById(a.body);
+        body.innerHTML = '';
+        setActive(idx);
+
+        for (let i = 0; i < a.lines.length; i++) {
+          const ln = a.lines[i];
+          // pre-pause specified by ln[1]
+          await new Promise(r => setTimeout(r, f(ln[1])));
+          // emit a log line aligned to this body line (sparingly)
+          const logAt = a.log[Math.floor(i / Math.max(1, Math.ceil(a.lines.length / a.log.length)))];
+          if (logAt) pushLog(logAt[0], logAt[1], logAt[2]);
+          // approval gate: visual pulse on agent 3 around the "awaiting" line
+          if (idx === 2 && i === 3) {
+            document.getElementById(a.agent).classList.add('gated');
+          }
+          if (idx === 2 && i === 4) {
+            document.getElementById(a.agent).classList.remove('gated');
+          }
+          await typeLine(body, ln[0], a.src);
+        }
+        // post-line beat
+        await new Promise(r => setTimeout(r, f(350)));
+        a.onEnd && a.onEnd();
+        resolve();
+      });
+    }
+
+    // Walk the robot courier between two elements (orch ↔ agent), legs in motion.
+    // mode: 'dispatch' = carrying a task package, 'report' = carrying a report (still glowing pkg)
+    function flyBetween(fromEl, toEl, color, mode){
+      return new Promise(resolve => {
+        const bot = document.getElementById('ws-bot');
+        const wrap = document.querySelector('.ws-agents');
+        if (!bot || !wrap || !fromEl || !toEl) { resolve(); return; }
+        const wrapBox = wrap.getBoundingClientRect();
+        const fromBox = fromEl.getBoundingClientRect();
+        const toBox = toEl.getBoundingClientRect();
+        const fromMid = (fromBox.top + fromBox.bottom) / 2 - wrapBox.top;
+        const toMid = (toBox.top + toBox.bottom) / 2 - wrapBox.top;
+        const goingDown = toMid >= fromMid;
+        const yStart = goingDown ? (fromBox.bottom - wrapBox.top - 6) : (fromBox.top - wrapBox.top + 6);
+        const yEnd = goingDown ? (toBox.top - wrapBox.top + 6) : (toBox.bottom - wrapBox.top - 6);
+        // Walking pace: ~95 px/s; clamp to a comfortable range. Scaled by SPEED.
+        const dur = f(Math.max(900, Math.min(1700, Math.abs(yEnd - yStart) / 95 * 1000)));
+
+        bot.classList.remove('green','cyan','orange','violet','pink','walking','carrying');
+        bot.classList.add(color);
+        if (mode) bot.classList.add('carrying');
+        bot.style.transition = 'none';
+        bot.style.top = yStart + 'px';
+        bot.style.opacity = '0';
+
+        requestAnimationFrame(() => {
+          bot.style.transition = 'opacity .25s ease';
+          bot.style.opacity = '1';
+          bot.classList.add('walking');
+          requestAnimationFrame(() => {
+            bot.style.transition = 'top ' + dur + 'ms linear, opacity .3s ease';
+            bot.style.top = yEnd + 'px';
+          });
+        });
+        // light all the connector arrows along the path
+        document.querySelectorAll('.ws-arrow').forEach(a => a.classList.add('lit'));
+        setTimeout(() => {
+          bot.classList.remove('walking');
+          bot.style.transition = 'opacity .3s ease';
+          bot.style.opacity = '0';
+          setTimeout(() => bot.classList.remove('carrying'), 250);
+          resolve();
+        }, dur + 60);
+      });
+    }
+
+    // Counter + toast + panel glow for the "pattern learned" beat.
+    function bumpCounter(){
+      const el = document.getElementById('ws-counter');
+      if (!el) return;
+      const n = (parseInt(el.textContent, 10) || 0) + 1;
+      el.textContent = n;
+      el.classList.add('bump');
+      setTimeout(() => el.classList.remove('bump'), f(420));
+    }
+    function showToast(key){
+      const t = document.getElementById('ws-toast');
+      const k = document.getElementById('ws-toast-key');
+      if (!t) return;
+      if (k) k.textContent = key || '';
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), f(1700));
+    }
+    function flashSkillPanel(){
+      const panels = document.querySelectorAll('.ws-panel');
+      const sk = panels[0];
+      if (!sk) return;
+      sk.classList.add('learning');
+      setTimeout(() => sk.classList.remove('learning'), f(900));
+    }
+
+    // Type a single line into the orchestrator's body and trim to last 5 lines.
+    async function orchSay(html){
+      const body = document.getElementById('ws-orch-body');
+      if (!body) return;
+      await typeLine(body, html, 'pink');
+      while (body.children.length > 5) body.removeChild(body.firstChild);
+    }
+
+    function flashFile(idx){
+      const f = document.querySelector('.ws-file[data-file="' + idx + '"]');
+      if (!f) return;
+      f.classList.add('live', 'flash');
+      const badge = f.querySelector('.badge');
+      if (badge) badge.style.display = 'inline-block';
+      setTimeout(() => f.classList.remove('flash'), 900);
+      // reveal the diff for this file with staggered + lines
+      const diff = document.querySelector('.ws-skill-diff[data-diff="' + idx + '"]');
+      if (diff) {
+        diff.classList.add('show');
+        const adds = diff.querySelectorAll('.add');
+        adds.forEach((line, i) => {
+          setTimeout(() => line.classList.add('in'), 140 + i * 180);
+        });
+      }
+    }
+
+    let logEl = document.getElementById('ws-log');
+    function pushLog(src, color, msg){
+      if (!logEl) return;
+      const t = new Date();
+      const ts = String(t.getHours()).padStart(2,'0') + ':' +
+                 String(t.getMinutes()).padStart(2,'0') + ':' +
+                 String(t.getSeconds()).padStart(2,'0');
+      const ln = document.createElement('span');
+      ln.className = 'ws-lg';
+      ln.innerHTML =
+        '<span class="ts">' + ts + '</span>' +
+        '<span class="src ' + color + '">[' + src + ']</span>' +
+        '<span>' + msg + '</span>';
+      logEl.appendChild(ln);
+      requestAnimationFrame(() => ln.classList.add('show'));
+      // keep last ~7 visible
+      while (logEl.children.length > 7) logEl.removeChild(logEl.firstChild);
+    }
+
+    function animateShadow(target){
+      const el = document.getElementById('ws-shad');
+      let v = 0;
+      const dur = 800; const start = performance.now();
+      function step(now){
+        const p = Math.min((now - start)/dur, 1);
+        v = target * (1 - Math.pow(1 - p, 3));
+        el.textContent = '+$' + v.toFixed(0);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    function animateReal(target){
+      const el = document.getElementById('ws-real');
+      const divEl = document.getElementById('ws-div');
+      const bar = document.getElementById('ws-div-bar');
+      let v = 0;
+      const dur = 900; const start = performance.now();
+      function step(now){
+        const p = Math.min((now - start)/dur, 1);
+        v = target * (1 - Math.pow(1 - p, 3));
+        el.textContent = '+$' + v.toFixed(0);
+        const shad = 28; const delta = v - shad;
+        divEl.textContent = (delta >= 0 ? '+' : '-') + '$' + Math.abs(delta).toFixed(2);
+        bar.style.width = Math.min(100, Math.abs(delta) / 5 * 100) + '%';
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // Orchestrator narration: short labels + summaries per subagent.
+    const orchScript = [
+      { label: 'backtest-trader', dispatch: 'sweep markets · find a fresh edge', report: 'edge confirmed wr=87.3% n=2384', skill: 'btc-momentum-001' },
+      { label: 'shadow-builder',  dispatch: 'validate with paper money before capital', report: '7d shadow +$420 · 0 anomalies', skill: 'btc-momentum-001 (+shadow)' },
+      { label: 'approval-broker', dispatch: 'PnL is solid · need a human signoff', report: 'APPROVED by operator@portco', skill: 'btc-momentum-001 (+approved)' },
+      { label: 'real-trader',     dispatch: 'going live · stake $5/trade · cap $500', report: 'day1 real +$31 · Δ vs shadow +$3 (in-band)', skill: 'learnings.md' },
+    ];
+
+    async function loop(){
+      // reset
+      agents.forEach(a => {
+        const el = document.getElementById(a.agent);
+        if (el) { el.classList.remove('active', 'done', 'gated'); }
+        const body = document.getElementById(a.body);
+        if (body) body.innerHTML = '';
+        if (a.arrow) document.getElementById(a.arrow)?.classList.remove('lit');
+      });
+      document.getElementById('ws-ar0')?.classList.remove('lit');
+      document.querySelectorAll('.ws-file').forEach(f => {
+        f.classList.remove('live', 'flash');
+        const b = f.querySelector('.badge'); if (b) b.style.display = 'none';
+      });
+      document.querySelectorAll('.ws-skill-diff').forEach(d => {
+        d.classList.remove('show');
+        d.querySelectorAll('.add').forEach(a => a.classList.remove('in'));
+      });
+      document.getElementById('ws-counter').textContent = '0';
+      document.getElementById('ws-orch-body').innerHTML = '';
+      const bot = document.getElementById('ws-bot');
+      if (bot) { bot.style.opacity = '0'; bot.classList.remove('walking','carrying'); }
+      logEl.innerHTML = '';
+      document.getElementById('ws-shad').textContent = '+$0';
+      document.getElementById('ws-real').textContent = '+$0';
+      document.getElementById('ws-div').textContent = '$0.00';
+      document.getElementById('ws-div-bar').style.width = '0';
+
+      const orchEl = document.getElementById('ws-orch');
+
+      // Orchestrator wakes up & sets the plan
+      await orchSay('<span class="m">$</span> <span class="k">orchestrator</span> · session=portco-001');
+      await orchSay('<span class="m">[plan]</span> sweep → discover → validate → gate → deploy → learn');
+
+      // Run each subagent through the orchestrator: dispatch → run → report back → learn.
+      for (let i = 0; i < agents.length; i++) {
+        const a = agents[i];
+        const s = orchScript[i];
+
+        await orchSay('<span class="m">[think]</span> ' + s.dispatch);
+        await orchSay('<span class="m">[dispatch]</span> spawn(<span class="v">' + s.label + '</span>) <span class="m">→</span>');
+
+        const agentEl = document.getElementById(a.agent);
+        await flyBetween(orchEl, agentEl, a.src, 'dispatch');
+
+        await typeAgent(i);
+
+        await flyBetween(agentEl, orchEl, a.src, 'report');
+
+        await orchSay('<span class="m">[receive]</span> <span class="m">←</span> <span class="v">' + s.label + '</span>: ' + s.report);
+        await orchSay('<span class="m">[learn]</span> +pattern → <span class="v">skills/' + s.skill + '</span> <span class="g">✦</span>');
+        flashSkillPanel();
+        bumpCounter();
+        showToast(s.skill);
+      }
+
+      await orchSay('<span class="m">[done]</span> experiment archived · scanning for next signal…');
+
+      setTimeout(loop, f(5500));
+    }
+
+    loop();
+  }
+
+  /* ─── Nav background on scroll ─── */
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+})();
+</script>
+</body>
+</html>
